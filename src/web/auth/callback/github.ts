@@ -1,7 +1,7 @@
+import { getParams } from "@/lib/route";
+import GitHubService from "@/services/github";
+import { Request } from "@/types";
 import { ServerResponse } from "node:http";
-import { Request } from "../middleware/types";
-import { getParams } from "../lib/route";
-import GitHubService from "../services/github";
 
 async function GET(req: Request, res: ServerResponse) {
   const params = getParams(req);
@@ -30,11 +30,16 @@ async function GET(req: Request, res: ServerResponse) {
     appName,
   );
 
-  req.session.data.githubAccessToken = response.access_token;
+  req.session.data.auth = {
+    provider: "GITHUB",
+    body: response,
+  };
+
+  res.writeHead(302, { Location: "/dashboard" });
   res.end();
 }
 
-export default function callbackRoute(req: Request, res: ServerResponse) {
+export default function (req: Request, res: ServerResponse) {
   if (req.method === "GET") return GET(req, res);
   res.end("Invalid route");
 }

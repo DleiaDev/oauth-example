@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { ServerResponse } from "node:http";
-import { Request } from "../middleware/types";
-import GitHubService from "../services/github";
+import { Request } from "@/types";
+import GitHubService from "@/services/github";
 
 function GET(req: Request, res: ServerResponse) {
   const clientId = process.env.GITHUB_APP_CLIENT_ID;
@@ -33,7 +33,7 @@ function GET(req: Request, res: ServerResponse) {
   res.end();
 }
 
-export default function loginRoute(req: Request, res: ServerResponse) {
+export default function (req: Request, res: ServerResponse) {
   if (req.method === "GET") return GET(req, res);
   res.end("Invalid route");
 }

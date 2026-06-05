@@ -5,10 +5,19 @@ import { IncomingMessage, ServerResponse } from "node:http";
 export type Session = {
   id: string;
   data: {
-    oauth?: {
-      provider: "GITHUB" | "GOOGLE";
-      body: Record<string, string>;
-    };
+    auth?:
+      | {
+          provider: "GITHUB";
+          body: {
+            access_token: string;
+            token_type: string;
+            scope: string;
+          };
+        }
+      | {
+          provider: "GOOGLE";
+          body: Record<string, string>;
+        };
     loginState?: string;
     githubAccessToken?: string;
   };

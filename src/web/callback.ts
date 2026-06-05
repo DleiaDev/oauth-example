@@ -34,7 +34,7 @@ async function GET(req: Request, res: ServerResponse) {
   res.end();
 }
 
-export default function callbackRoute(req: Request, res: ServerResponse) {
+export default function (req: Request, res: ServerResponse) {
   if (req.method === "GET") return GET(req, res);
   res.end("Invalid route");
 }
