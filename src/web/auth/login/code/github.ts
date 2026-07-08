@@ -23,7 +23,7 @@ function GET(req: Request, res: ServerResponse) {
     client_id: clientId,
     redirect_uri: redirectUrl,
     scope: GitHubService.scope,
-    state: state,
+    nonce: state,
   };
 
   const authUrl = new URL(GitHubService.authorizationUrl);

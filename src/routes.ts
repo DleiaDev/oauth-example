@@ -3,11 +3,11 @@ const routes = [
   // Authentication
   // --------------------------
   {
-    path: "/auth/login/github",
+    path: "/auth/login/code/github",
     protected: false,
   },
   {
-    path: "/auth/login/google",
+    path: "/auth/login/oidc/google",
     protected: false,
   },
   {

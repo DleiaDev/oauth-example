@@ -46,6 +46,7 @@ export default class GitHubService {
       ...arg,
       appName: this.appName,
       url: GitHubService.apiBaseUrl,
+      accessToken: this.accessToken,
     });
 
     return response.json();
